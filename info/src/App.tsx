@@ -15,11 +15,11 @@ function App() {
       <UserProvider>
         <Router>
           <Routes>
+            <Route path='*/' element={<Intopage />}></Route>
+            <Route path='*/notes/signup' element={<div><SignUp /><SignIn /></div>}></Route>
+            <Route path='*/notes/todo' element={<TODO />}></Route>
+            <Route path='*/notes/dashboard' element={<Dashboard />}></Route>
             <Route path='/' element={<Intopage />}></Route>
-            <Route path='notes/signup' element={<div><SignUp /><SignIn /></div>}></Route>
-            <Route path='notes/todo' element={<TODO />}></Route>
-            <Route path='notes/dashboard' element={<Dashboard />}></Route>
-            
           </Routes>
         </Router>
       </UserProvider>
