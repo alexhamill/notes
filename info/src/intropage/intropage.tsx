@@ -13,7 +13,7 @@ const Intropage: React.FC = () => {
             <p>I build to for my own personal use but of course i will make it so everyone can use it if i can.</p>
             <p>so far there is nothing</p>
             <button onClick={() => navigate('/notes/signup')}>Get Started</button>
-            <Link to="/notes/signup">Go to Dashboard</Link>
+            <Link to="/notes/signup">Go to signup</Link>
         </div>
     );
   };
