@@ -10,8 +10,6 @@ import TODO from './TODO/todo.tsx';
 import Dashboard from './dashboard/dashboard.tsx';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
       <UserProvider>
@@ -21,6 +19,7 @@ function App() {
             <Route path='notes/signup' element={<div><SignUp /><SignIn /></div>}></Route>
             <Route path='notes/todo' element={<TODO />}></Route>
             <Route path='notes/dashboard' element={<Dashboard />}></Route>
+            
           </Routes>
         </Router>
       </UserProvider>
