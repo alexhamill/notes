@@ -20,6 +20,7 @@ function App() {
             <Route path='*/notes/todo' element={<TODO />}></Route>
             <Route path='*/notes/dashboard' element={<Dashboard />}></Route>
             <Route path='/' element={<Intopage />}></Route>
+            <Route path='/notes' element={<Intopage />}></Route>
           </Routes>
         </Router>
       </UserProvider>
