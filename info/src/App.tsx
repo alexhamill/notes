@@ -10,12 +10,12 @@ function App() {
     <UserProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Intropage />} />
+          <Route path="/notes" element={<Intropage />} />
           <Route path="/notes/signup" element={<div><SignUp /><SignIn /></div>} />
           <Route path="/notes/todo" element={<TODO />} />
           <Route path="/notes/dashboard" element={<Dashboard />} />
           {/* Redirect any unknown route back to the intro page */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/notes" replace />} />
         </Routes>
       </Router>
     </UserProvider>
