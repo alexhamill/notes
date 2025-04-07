@@ -2,7 +2,7 @@
   "name": "info",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://username.github.io/repository-name",
+  "homepage": "https://alexhamill.github.io/notes",
   "type": "module",
   "scripts": {
     "dev": "vite",
