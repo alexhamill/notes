@@ -5,10 +5,10 @@ import Head from "../components/head.tsx";
 import "./dash.css"
 
 const Dashboard: React.FC = () => {
-  const { user, userData } = useUser();
+  const { userData } = useUser();
   return (
     <div>   
-        <Head message={`Welcome ${userData?.name}`} />
+        <Head message={`Welcome ${userData?.firstname} ${userData?.lastname}`} />
 
     </div>
   );

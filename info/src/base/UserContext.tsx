@@ -5,10 +5,10 @@ import { auth, db } from "./firebase"; // your Firebase config
 
 // Define a shape for your Firestore user data
 interface UserData {
-  name?: string;
+  firstname?: string;
+  lastname?: string;
   email?: string;
   role?: string;
-  // Add any fields you expect in your "users" Firestore doc
 }
 
 interface UserContextType {

@@ -3,12 +3,15 @@ import { auth, db } from "../base/firebase"; // Import Firebase config
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -19,16 +22,18 @@ const SignUp: React.FC = () => {
 
       // Save additional user info to Firestore
       await setDoc(doc(db, "users", user.uid), {
-        name,
+        firstname,
+        lastname,
         email,
         createdAt: new Date(),
       });
 
       console.log("User registered successfully!");
+      navigate('/notes/dashboard');
     } catch (err) {
       setError("Failed to create account: " + (err as Error).message);
     }
-    window.location.href = "/notes/dashboard";
+    
   };
 
   return (
@@ -38,9 +43,17 @@ const SignUp: React.FC = () => {
       <form onSubmit={handleSignUp}>
         <input
           type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="First Name"
+          value={firstname}
+          onChange={(e) => setFirstname(e.target.value)}
+          required
+        />
+        <br/>
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastname}
+          onChange={(e) => setLastname(e.target.value)}
           required
         />
         <br/>
@@ -60,6 +73,7 @@ const SignUp: React.FC = () => {
           required
         />
         <br/>
+        <br/>
         <button type="submit">Sign Up</button>
       </form>
     </div>
@@ -70,6 +84,7 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSignIn = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -77,12 +92,12 @@ const SignIn: React.FC = () => {
       await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
         const user = userCredential.user;
         console.log("user signed in",user.uid);
+        navigate('/notes/dashboard');
       });
       
     } catch (err) {
       setError("Failed to sign in: " + (err as Error).message);
     }
-    window.location.href = "/notes/dashboard";
   };
 
   return (
@@ -97,6 +112,7 @@ const SignIn: React.FC = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+        <br/>
         <input
           type="password"
           placeholder="Password"
@@ -104,11 +120,31 @@ const SignIn: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <br/>
+        <br/>
         <button type="submit">Sign In</button>
       </form>
     </div>
   );
 };
+const Signpage: React.FC = () => {
 
-export { SignUp, SignIn };
+  return (
+  <div>
+    <div style={{ display: "grid", gridTemplateAreas: `"up bar in"`, gridTemplateColumns: "1fr 1px 1fr", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+      <div style={{ gridArea: "up" }}>
+      <SignUp />
+      </div>
+      <div style={{ width: "1px", backgroundColor: "black", height: "100%", gridArea: "bar"}}></div>
+      <div style={{ gridArea: "in", padding: "10vw" }}>
+      <SignIn />
+      </div>
+    </div>
+
+  </div>
+  );
+}
+
+
+export { SignUp, SignIn, Signpage };
 
