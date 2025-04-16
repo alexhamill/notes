@@ -13,11 +13,11 @@ function App() {
       <Router>
       <Topbar />
         <Routes>
-          <Route path="/" element={<IntroPage />} />
+          <Route path="/notes" element={<IntroPage />} />
           <Route path="/notes/signup/*" element={<Signpage />} />
           <Route path="/notes/todo/*" element={<TODO />} />
           <Route path="/notes/dashboard/*" element={<Dashboard />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/notes" replace />} />
         </Routes>
       </Router>
     </UserProvider>
