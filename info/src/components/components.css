@@ -1,9 +1,28 @@
-.App-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 20px;
+.header {
+    max-width: fit-content;
+    margin: auto;
   }
-  
+.App-header{
+  max-width: 70%;
+  margin: auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+.navbar{
+  width: 100vw;
+  height: 7vh;
+  background-color: rgb(211, 204, 204);
+  display: flex;
+}
+.navbar-link{
+  height: 100%;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(166, 175, 202);
+  display: flex;
+  place-items: center;
+}
+.navbar-link:hover{
+  background-color: rgb(211, 204, 204);
+}

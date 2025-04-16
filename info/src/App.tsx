@@ -5,11 +5,13 @@ import { UserProvider } from './base/UserContext.tsx';
 import TODO from './TODO/todo.tsx';
 import Dashboard from './dashboard/dashboard.tsx';
 import './App.css';
+import Topbar from './components/topbar';
 
 function App() {
   return (
     <UserProvider>
       <Router>
+      <Topbar />
         <Routes>
           <Route path="/" element={<IntroPage />} />
           <Route path="/notes/signup/*" element={<Signpage />} />

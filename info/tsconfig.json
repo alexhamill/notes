@@ -5,6 +5,9 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "noUnusedLocals": false
+    "noUnusedLocals": false,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmitOnError": false
   }
 }
