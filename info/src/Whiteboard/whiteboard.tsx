@@ -25,8 +25,7 @@ const Whiteboard: React.FC = () => {
             console.log("clicked")
             e.preventDefault();
             const createdoc = async () => {
-                const docRef = await addDoc(nestedcol("Sticky-notes"), { useruid: useruid(), content: "", top: "100px", left: "100px", width: "100px", height: "100px", color: "#f0f0f0" }); 
-                console.log("Document created with ID:", docRef.id);
+                const docRef = await addDoc(nestedcol("Sticky-notes"), { useruid: useruid(), content: "", top: "100px", left: "100px", width: "100px", height: "100px", color: "red" }); 
             };
             createdoc();
         }
@@ -41,6 +40,7 @@ const Whiteboard: React.FC = () => {
                 <Sticky
                     key={note.id}
                     note={note}
+                    idd={note.id}
                 />
             ))}
 
