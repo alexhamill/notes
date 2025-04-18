@@ -15,6 +15,7 @@ import TODO from "./TODO/todo.tsx";
 import Dashboard from "./dashboard/dashboard.tsx";
 import Topbar from "./components/topbar";
 import "./App.css";
+import Whiteboard from "./Whiteboard/whiteboard.tsx";
 
 function AppLayout() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function AppLayout() {
         <Route path="/notes/signup/*" element={<Signpage />} />
         <Route path="/notes/todo/*" element={<TODO />} />
         <Route path="/notes/dashboard/*" element={<Dashboard />} />
+        <Route path="/notes/Whiteboard/*" element={<Whiteboard />} />
         <Route path="*" element={<Navigate to="/notes" replace />} />
       </Routes>
     </>

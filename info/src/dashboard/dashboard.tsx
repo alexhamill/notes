@@ -16,6 +16,10 @@ const Dashboard: React.FC = () => {
         <Link to="/notes/todo">
           <button className="todo-button">Go to TODO</button>
         </Link>
+        <Link to="/notes/Whiteboard">
+
+          <button className="todo-button">Go to Whiteboard</button>
+        </Link>
     </div>
   );
 };

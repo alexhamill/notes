@@ -1,0 +1,4 @@
+.sticky-note {
+    cursor: move;
+    user-select: none;
+}
