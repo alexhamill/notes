@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef  } from "react";
 import { docRef, useUser, getDocData, useruid, createdoc, nestedcol, nesteddoc} from "../base/UserContext.tsx";
 import { auth, db } from "../base/firebase";
 import { collection, doc, getDoc, addDoc, Timestamp, updateDoc } from "firebase/firestore";
 import "./sticky.css"
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 
 interface StickyNote {
     content: string;
@@ -15,13 +17,12 @@ interface StickyNote {
 
 const Sticky: React.FC<{ note: StickyNote, idd: string }> = ({ note, idd }) => {
     const { user, userData } = useUser();
-    // var xsize = 0;
-    // var ysize = 0;
+    const x = useRef(0);
+    const y = useRef(0);
+
     
 
     function touchstart(e: React.MouseEvent<HTMLDivElement>) {
-        // xsize = parseFloat(e.currentTarget.style.height.replace("px", "")) / 2;
-        // ysize = parseFloat(e.currentTarget.style.width.replace("px", "")) / 2;
         const parent = e.currentTarget.parentElement;
         if (parent) {
             parent.style.zIndex = "1000"
@@ -51,10 +52,52 @@ const Sticky: React.FC<{ note: StickyNote, idd: string }> = ({ note, idd }) => {
         updateDoc(ref, { left: parent.style.left, top: parent.style.top });
         }
     }
+    function expandstart(e: React.MouseEvent<HTMLDivElement>) {
+        x.current = e.clientX;
+        y.current = e.clientY;
+        const parent = e.currentTarget.parentElement;
+        if (parent) {
+            parent.style.zIndex = "1000"
+        }
+        e.preventDefault();
+    }
+    function expandmove(e: React.MouseEvent<HTMLDivElement>) {
+        e.preventDefault();
+        const isMouseDown = e.buttons === 1;
+        if (isMouseDown) {
+            const parent = (e.currentTarget as HTMLDivElement).parentElement;
+            const rect = parent?.getBoundingClientRect();
+            if (parent && rect) {
+                const dy = e.clientY - y.current;
+                const dx = e.clientX - x.current;
+                const currentHeight = parseFloat(parent.style.height) || 0;
+                const currentWidth = parseFloat(parent.style.width) || 0;
+                parent.style.height = `${currentHeight + dy}px`;
+                parent.style.width = `${currentWidth + dx}px`;
+            }
+            x.current = e.clientX;
+            y.current = e.clientY;
+        }
+        
+    }
+
+    function expandend(e: React.MouseEvent<HTMLDivElement>) {
+        e.preventDefault();
+        x.current = 0;
+        y.current = 0;
+        const parent = e.currentTarget.parentElement;
+        if (parent) {
+            parent.style.zIndex = "1"
+        const ref = nesteddoc("Sticky-notes", parent.id);
+        console.log(parent.id)
+        updateDoc(ref, { width: parent.style.width, height: parent.style.height });
+        }
+    }
 
 
     return (
         <div
+        
             id={idd}
             style={{
                 
@@ -73,9 +116,14 @@ const Sticky: React.FC<{ note: StickyNote, idd: string }> = ({ note, idd }) => {
                     onMouseMove = {(e) => { touchmove(e)}}
                     onMouseUp = {(e) => { touchend(e) }}
                     onMouseLeave={(e => { touchend(e) })}
-                ></div>
-                <div className="stickynote-expander"></div>
-                <p style={{fontSize:"100%"}}>
+                ><i className="bi bi-arrows-move"></i></div>
+                <div className="stickynote-expander"
+                    onMouseDown = {(e) => { expandstart(e) }}
+                    onMouseMove = {(e) => { expandmove(e)}}
+                    onMouseUp = {(e) => { expandend(e) }}
+                    onMouseLeave={(e => { expandend(e) })}
+                ><i className="bi bi-arrows-angle-expand"></i></div>
+                <p contentEditable className="imput" style={{fontSize:"100%", width:"100%", height:"100%", overflow:"hidden", margin:"0px"}}>
                 {note.content}
                 </p>
             

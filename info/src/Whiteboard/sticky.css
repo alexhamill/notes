@@ -1,26 +1,32 @@
 .sticky-note {
-    cursor: move;
     user-select: none;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     text-align: center;
+    cursor: text;
 }
 .sticknote-mover {
     cursor: move;
     position: absolute;
     z-index: inherit;
-    width: 20px;
-    height: 20px;
-    top: 0;
-    left: 0;
-    background-color: blue;
+    width: 25px;
+    height: 25px;
+    top: -10px;
+    left: -10px;
+    padding: 10px;
+    /* background-color: blue; */
 }
 .stickynote-expander {
     cursor: pointer;
     position: absolute;
     z-index: inherit;
-    width: 20px;
-    height: 20px;
-    top: calc(100% - 20px);
-    left: calc(100% - 20px);
-    background-color: rgb(134, 134, 179);
+    width: 25px;
+    height: 25px;
+    top: calc(100% - 35px);
+    left: calc(100% - 35px);
+    padding: 10px;
+    /* background-color: rgb(134, 134, 179); */
+}
+.imput{
+    outline: none;
+    text-align: center;
 }
