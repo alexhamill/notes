@@ -93,6 +93,19 @@ const Sticky: React.FC<{ note: StickyNote, idd: string }> = ({ note, idd }) => {
         updateDoc(ref, { width: parent.style.width, height: parent.style.height });
         }
     }
+    useEffect(() => {
+        const inputElement = document.getElementById(`input${idd}`);
+        if (inputElement) {
+            inputElement.textContent = note.content;
+        }
+    }, []);
+    function savecontent(e: React.ChangeEvent<HTMLParagraphElement>) {
+        const inputElement = document.getElementById(`input${idd}`);
+        if (inputElement) {
+            const ref = nesteddoc("Sticky-notes", idd);
+            updateDoc(ref, { content: inputElement.textContent });
+        }
+    }
 
 
     return (
@@ -123,8 +136,13 @@ const Sticky: React.FC<{ note: StickyNote, idd: string }> = ({ note, idd }) => {
                     onMouseUp = {(e) => { expandend(e) }}
                     onMouseLeave={(e => { expandend(e) })}
                 ><i className="bi bi-arrows-angle-expand"></i></div>
-                <p contentEditable className="imput" style={{fontSize:"100%", width:"100%", height:"100%", overflow:"hidden", margin:"0px"}}>
-                {note.content}
+                <p 
+                    contentEditable 
+                    className="imput" 
+                    onInput={(e) => savecontent(e as unknown as React.ChangeEvent<HTMLParagraphElement>)} 
+                    id={`input${idd}`} 
+                    style={{fontSize:"100%", width:"100%", height:"100%", overflow:"hidden", margin:"0px"}}
+                >
                 </p>
             
         </div>

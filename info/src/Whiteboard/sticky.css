@@ -3,6 +3,7 @@
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     text-align: center;
     cursor: text;
+    white-space: pre-wrap;
 }
 .sticknote-mover {
     cursor: move;
@@ -14,6 +15,9 @@
     left: -10px;
     padding: 10px;
     /* background-color: blue; */
+}
+.sticknote-mover:hover, .stickynote-expander:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .stickynote-expander {
     cursor: pointer;
