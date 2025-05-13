@@ -69,7 +69,7 @@ const Whiteboard: React.FC = () => {
     }
 
     const handleZoom = (delta: number) => {
-        setZoom(prev => Math.min(Math.max(0.5, prev + delta), 2));
+        setZoom(prev => Math.min(Math.max(.3, prev + delta), 2));
     };
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
