@@ -6,11 +6,11 @@ import "./sticky.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const COLORS = [
-    { name: "Dark", value: "#2d2d42" },
-    { name: "Blue", value: "#2d3d59" },
-    { name: "Green", value: "#2d4d3d" },
-    { name: "Purple", value: "#3d2d59" },
-    { name: "Red", value: "#4d2d3d" }
+    { name: "Pink", value: "#ff7eb9" },
+    { name: "Dark Pink", value: "#ff65a3" },
+    { name: "Light Blue", value: "#7afcff" },
+    { name: "Light Yellow", value: "#feff9c" },
+    { name: "Yellow", value: "#fff740" }
 ];
 
 interface StickyNote {
@@ -20,6 +20,8 @@ interface StickyNote {
     top: number | string;
     width: number | string;
     height: number | string;
+    textColor: string;
+    Fontsize: number;
 }
 
 interface StickyProps {
@@ -37,7 +39,7 @@ const Sticky: React.FC<StickyProps> = ({ note, idd }) => {
     const initialSize = useRef({ width: 0, height: 0 });
     const [showSettings, setShowSettings] = useState(false);
     const [currentColor, setCurrentColor] = useState(note.color || "#2d2d42");
-    const [customColor, setCustomColor] = useState("#2d2d42");
+    const [customColor, setCustomColor] = useState("#feff9c");
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -156,7 +158,8 @@ const Sticky: React.FC<StickyProps> = ({ note, idd }) => {
                 minHeight: "200px",
                 boxShadow: "0 3px 6px rgba(0,0,0,0.3)",
                 borderRadius: "2px",
-                color: "#e0e0e0"
+                color: typeof note.textColor === "string" ? note.textColor : "#000000",
+                fontSize: note.Fontsize
             }}
             className="sticky-note"
         >
@@ -176,7 +179,7 @@ const Sticky: React.FC<StickyProps> = ({ note, idd }) => {
                 className="stickynote-settings"
                 onClick={() => setShowSettings(!showSettings)}
             >
-                <i className="bi bi-gear-fill" style={{ color: "#ffffff" }}></i>
+                <i className="bi bi-gear-fill" style={{ color: "#ffffff", fontSize: "1rem"}}></i>
             </div>
             {showSettings && (
                 <div
@@ -280,6 +283,10 @@ const Sticky: React.FC<StickyProps> = ({ note, idd }) => {
                     const ref = nesteddoc("Sticky-notes", idd);
                     updateDoc(ref, { content: e.currentTarget.innerText });
                 }}
+                // onMouseLeave={(e) => {
+                //     const ref = nesteddoc("Sticky-notes", idd);
+                //     updateDoc(ref, { content: e.currentTarget.innerText });
+                // }}
             >
                 {note.content}
             </div>

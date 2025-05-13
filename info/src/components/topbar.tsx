@@ -9,7 +9,7 @@ const Topbar: React.FC = () => {
             left: 0,
             right: 0,
             height: '50px',
-            backgroundColor: '#1e1e2e',
+            backgroundColor: '#white',
             display: 'flex',
             alignItems: 'center',
             padding: '0 20px',

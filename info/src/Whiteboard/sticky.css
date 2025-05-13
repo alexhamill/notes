@@ -50,6 +50,7 @@
 }
 
 .sticknote-mover {
+    font-size: 1rem;
     cursor: move;
     position: absolute;
     z-index: 2;
@@ -68,6 +69,7 @@
 }
 
 .stickynote-expander {
+    font-size: 1rem;
     cursor: nw-resize;
     position: absolute;
     z-index: 2;

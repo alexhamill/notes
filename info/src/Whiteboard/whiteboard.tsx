@@ -58,9 +58,11 @@ const Whiteboard: React.FC = () => {
                 left: `${x}px`, 
                 width: "200px", 
                 height: "200px", 
-                color: "#2d2d42",
-                createdAt: Timestamp.now()
-            });
+                color: "#feff9c",
+                createdAt: Timestamp.now(),
+                textcolor: "#000000",
+                Fontsize: "1rem"
+                        });
             
             // Note will be added automatically through the snapshot listener
         } catch (error) {
@@ -118,7 +120,7 @@ const Whiteboard: React.FC = () => {
                 height: 'calc(100vh - 50px)',
                 overflow: 'hidden',
                 position: 'relative',
-                backgroundColor: '#1e1e2e',
+                backgroundColor: '#404040',
                 marginTop: '50px'
             }}
         >
@@ -128,7 +130,7 @@ const Whiteboard: React.FC = () => {
                     top: '70px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    backgroundColor: '#2a2a3f',
+                    backgroundColor: 'white',
                     padding: '10px 20px',
                     borderRadius: '8px',
                     display: 'flex',
@@ -141,8 +143,8 @@ const Whiteboard: React.FC = () => {
                 <button
                     onClick={addnote}
                     style={{
-                        backgroundColor: '#3a3a4f',
-                        color: '#ffffff',
+                        backgroundColor: 'grey',
+                        color: 'black',
                         border: 'none',
                         padding: '8px 16px',
                         borderRadius: '4px',
@@ -159,7 +161,7 @@ const Whiteboard: React.FC = () => {
                     display: 'flex',
                     gap: '5px',
                     alignItems: 'center',
-                    backgroundColor: '#3a3a4f',
+                    backgroundColor: 'grey',
                     borderRadius: '4px',
                     padding: '4px'
                 }}>
@@ -167,7 +169,7 @@ const Whiteboard: React.FC = () => {
                         onClick={() => handleZoom(-0.1)}
                         style={{
                             backgroundColor: 'transparent',
-                            color: '#ffffff',
+                            color: 'black',
                             border: 'none',
                             padding: '4px 8px',
                             borderRadius: '4px',
@@ -183,7 +185,7 @@ const Whiteboard: React.FC = () => {
                         onClick={() => handleZoom(0.1)}
                         style={{
                             backgroundColor: 'transparent',
-                            color: '#ffffff',
+                            color: 'black',
                             border: 'none',
                             padding: '4px 8px',
                             borderRadius: '4px',
@@ -197,8 +199,8 @@ const Whiteboard: React.FC = () => {
                     <button
                         onClick={() => setShowSizeSettings(!showSizeSettings)}
                         style={{
-                            backgroundColor: '#3a3a4f',
-                            color: '#ffffff',
+                            backgroundColor: 'grey',
+                            color: 'black',
                             border: 'none',
                             padding: '8px 16px',
                             borderRadius: '4px',
@@ -218,7 +220,7 @@ const Whiteboard: React.FC = () => {
                                 top: '100%',
                                 left: '0',
                                 marginTop: '8px',
-                                backgroundColor: '#2a2a3f',
+                                backgroundColor: '#404040',
                                 padding: '16px',
                                 borderRadius: '4px',
                                 boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
@@ -231,9 +233,9 @@ const Whiteboard: React.FC = () => {
                                     key={preset.name}
                                     onClick={() => handleSizeChange(preset.width, preset.height)}
                                     style={{
-                                        backgroundColor: canvasSize.width === preset.width ? '#3a3a4f' : 'transparent',
+                                        backgroundColor: canvasSize.width === preset.width ? 'grey' : 'transparent',
                                         color: '#ffffff',
-                                        border: 'none',
+                                        border: '2px solid black',
                                         padding: '8px',
                                         width: '100%',
                                         textAlign: 'left',
@@ -254,7 +256,7 @@ const Whiteboard: React.FC = () => {
                                     min="1000"
                                     max="50000"
                                     style={{
-                                        backgroundColor: '#3a3a4f',
+                                        backgroundColor: 'grey',
                                         color: '#ffffff',
                                         border: 'none',
                                         padding: '8px',
@@ -269,7 +271,7 @@ const Whiteboard: React.FC = () => {
                                     min="1000"
                                     max="50000"
                                     style={{
-                                        backgroundColor: '#3a3a4f',
+                                        backgroundColor: 'grey',
                                         color: '#ffffff',
                                         border: 'none',
                                         padding: '8px',
@@ -280,7 +282,7 @@ const Whiteboard: React.FC = () => {
                                 <button
                                     type="submit"
                                     style={{
-                                        backgroundColor: '#3a3a4f',
+                                        backgroundColor: 'grey',
                                         color: '#ffffff',
                                         border: 'none',
                                         padding: '8px',
@@ -307,10 +309,10 @@ const Whiteboard: React.FC = () => {
                     transform: `translate(${position.x}px, ${position.y}px) scale(${zoom})`,
                     transformOrigin: '0 0',
                     cursor: isDragging.current ? 'grabbing' : 'grab',
-                    backgroundColor: '#2a2a3f',
+                    backgroundColor: '#f8f8f8',
                     backgroundImage: `
-                        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+                        linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
                     `,
                     backgroundSize: '20px 20px'
                 }}
